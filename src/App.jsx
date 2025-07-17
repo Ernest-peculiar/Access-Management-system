@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Login from "./Pages/Login";
 import ForgotPassword from "./Pages/ForgotPassword";
 import Messages from "./Employees/Messages";
 import Admin from "./admins/Admin";
 import Security from "./securities/Security";
-import Employee from "./Employees/employee";
+import Employee from "./Employees/Employee";
 import Cookies from "js-cookie";
 import "@fontsource/montserrat";
 import "./styles/Home.css";
@@ -21,7 +26,11 @@ class ErrorBoundary extends React.Component {
   }
   render() {
     if (this.state.hasError) {
-      return <div style={{ color: "red", padding: 24 }}>Error: {String(this.state.error)}</div>;
+      return (
+        <div style={{ color: "red", padding: 24 }}>
+          Error: {String(this.state.error)}
+        </div>
+      );
     }
     return this.props.children;
   }
@@ -76,19 +85,31 @@ function App() {
               <Route
                 path="/admin/*"
                 element={
-                  user.role === "admin" ? <Admin /> : <Navigate to="/" replace />
+                  user.role === "admin" ? (
+                    <Admin />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
                 }
               />
               <Route
                 path="/security/*"
                 element={
-                  user.role === "security" ? <Security /> : <Navigate to="/" replace />
+                  user.role === "security" ? (
+                    <Security />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
                 }
               />
               <Route
                 path="/employee/*"
                 element={
-                  user.role === "employee" ? <Employee /> : <Navigate to="/" replace />
+                  user.role === "employee" ? (
+                    <Employee />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
                 }
               />
               <Route path="/" element={getRootRedirect()} />
